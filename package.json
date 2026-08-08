@@ -2,7 +2,8 @@
   "name": "procureflow-cap",
   "version": "1.0.0",
   "dependencies": {
-    "@sap/cds": "^9"
+    "@sap/cds": "^9",
+    "@sap/cds-common-content": "^3.2.0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4"

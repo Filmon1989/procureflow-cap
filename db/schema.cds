@@ -10,7 +10,7 @@ using {
     sap.common.Currencies
 } from '@sap/cds/common';
 
-
+using from '@sap/cds-common-content';
 type SupplierStatus : String enum {
     Active   = 'ACTIVE';
     Blocked  = 'BLOCKED';
