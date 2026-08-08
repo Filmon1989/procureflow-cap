@@ -1,0 +1,6 @@
+ID,createdAt,createdBy,modifiedAt,modifiedBy,companyCode,name,country_code,currency_code,active
+8e523170-947e-5246-9404-a79ec5162ee5,2025-01-10T08:00:00Z,system,2025-01-10T08:00:00Z,system,1000,ProcureFlow Industrial Europe SE,DE,EUR,True
+a5a23b47-f404-5ae9-add7-081d82fadb28,2025-01-18T08:00:00Z,system,2025-01-18T08:00:00Z,system,1100,ProcureFlow Logistics Europe GmbH,DE,EUR,True
+4d08b670-8842-5172-92ff-70175821c7ff,2025-01-26T08:00:00Z,system,2025-01-26T08:00:00Z,system,2000,ProcureFlow North America Inc.,US,USD,True
+20069725-aaf9-5379-82c1-05a1497180c3,2025-02-03T08:00:00Z,system,2025-02-03T08:00:00Z,system,3000,ProcureFlow Manufacturing UK Ltd.,GB,GBP,True
+8378f4a1-d15e-560d-9c58-628b5d355769,2025-02-11T08:00:00Z,system,2025-02-11T08:00:00Z,system,4000,ProcureFlow Central Europe s.r.o.,CZ,CZK,True

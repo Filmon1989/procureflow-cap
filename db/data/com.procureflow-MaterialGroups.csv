@@ -1,0 +1,26 @@
+ID,createdAt,createdBy,modifiedAt,modifiedBy,groupCode,name,description
+2acb4523-efa8-5113-8671-718f714e827d,2025-04-23T08:00:00Z,system,2025-04-23T08:00:00Z,system,RAW-MET,Raw Materials,Procurement category for raw materials used across ProcureFlow plants.
+78a29834-2f00-5ddb-98ac-157ca6d78bba,2025-04-24T08:00:00Z,system,2025-04-24T08:00:00Z,system,MECH,Mechanical Components,Procurement category for mechanical components used across ProcureFlow plants.
+759df8ed-dbb8-5ebd-b398-95fa7f470c78,2025-04-25T08:00:00Z,system,2025-04-25T08:00:00Z,system,ELEC,Electrical Components,Procurement category for electrical components used across ProcureFlow plants.
+796ae5a3-0afd-5325-bbfe-ed77e933b62e,2025-04-26T08:00:00Z,system,2025-04-26T08:00:00Z,system,PACK,Packaging,Procurement category for packaging used across ProcureFlow plants.
+352f8b23-c4e6-5bc1-9928-e3680bd83e0d,2025-04-27T08:00:00Z,system,2025-04-27T08:00:00Z,system,IT-HW,IT Hardware,Procurement category for it hardware used across ProcureFlow plants.
+bff32fdb-82c9-50b2-a43e-d228c5ac24ac,2025-04-28T08:00:00Z,system,2025-04-28T08:00:00Z,system,IT-ACC,IT Accessories,Procurement category for it accessories used across ProcureFlow plants.
+f35026fa-060f-5f11-9a86-269f5666b8e4,2025-04-29T08:00:00Z,system,2025-04-29T08:00:00Z,system,MRO,Maintenance & Repair,Procurement category for maintenance & repair used across ProcureFlow plants.
+4c63ca08-088d-5a08-992c-d37a3c07121b,2025-04-30T08:00:00Z,system,2025-04-30T08:00:00Z,system,CHEM,Industrial Chemicals,Procurement category for industrial chemicals used across ProcureFlow plants.
+55c4127a-8e0c-57e2-8b89-bed0198148ef,2025-05-01T08:00:00Z,system,2025-05-01T08:00:00Z,system,PPE,Personal Protective Equipment,Procurement category for personal protective equipment used across ProcureFlow plants.
+f9b30b47-6010-5ad9-82f0-806e9aade65e,2025-05-02T08:00:00Z,system,2025-05-02T08:00:00Z,system,OFFICE,Office Supplies,Procurement category for office supplies used across ProcureFlow plants.
+10530ccc-b6a7-5f3b-9f30-768a03cef30c,2025-05-03T08:00:00Z,system,2025-05-03T08:00:00Z,system,FAST,Fasteners,Procurement category for fasteners used across ProcureFlow plants.
+a0f96efb-e3df-5d04-bbd8-f7c638ce31b7,2025-05-04T08:00:00Z,system,2025-05-04T08:00:00Z,system,BEAR,Bearings,Procurement category for bearings used across ProcureFlow plants.
+b708786d-78bc-5ffa-b86f-456f57af9cad,2025-05-05T08:00:00Z,system,2025-05-05T08:00:00Z,system,HYDR,Hydraulics,Procurement category for hydraulics used across ProcureFlow plants.
+d055653d-a48f-5b95-aa61-6d89d00e4ec6,2025-05-06T08:00:00Z,system,2025-05-06T08:00:00Z,system,PNEU,Pneumatics,Procurement category for pneumatics used across ProcureFlow plants.
+dd52a956-8e5a-5bc2-85fa-089f9fa3ed5f,2025-05-07T08:00:00Z,system,2025-05-07T08:00:00Z,system,MOTOR,Motors & Drives,Procurement category for motors & drives used across ProcureFlow plants.
+55b98412-a87c-5d06-99b1-b52e5bf7ce0f,2025-05-08T08:00:00Z,system,2025-05-08T08:00:00Z,system,SENS,Sensors,Procurement category for sensors used across ProcureFlow plants.
+2658df6b-27d3-5402-9299-f7c0d6729824,2025-05-09T08:00:00Z,system,2025-05-09T08:00:00Z,system,CABLE,Cables,Procurement category for cables used across ProcureFlow plants.
+777e7c37-1e75-51c3-ae1f-c155fd09bb99,2025-05-10T08:00:00Z,system,2025-05-10T08:00:00Z,system,CTRL,Control Equipment,Procurement category for control equipment used across ProcureFlow plants.
+e4cee72f-aec8-50d7-9b62-f7b616ca4094,2025-05-11T08:00:00Z,system,2025-05-11T08:00:00Z,system,TOOLS,Industrial Tools,Procurement category for industrial tools used across ProcureFlow plants.
+b8ea0922-f2ef-5e72-a3b7-5f823c043cf9,2025-05-12T08:00:00Z,system,2025-05-12T08:00:00Z,system,FILTER,Filters,Procurement category for filters used across ProcureFlow plants.
+2edc4fcd-5750-5cec-9cab-555863e23975,2025-05-13T08:00:00Z,system,2025-05-13T08:00:00Z,system,LUBE,Lubricants,Procurement category for lubricants used across ProcureFlow plants.
+8dd5d572-569a-56bd-acd8-3be0728ad8a5,2025-05-14T08:00:00Z,system,2025-05-14T08:00:00Z,system,PIPE,Pipes & Fittings,Procurement category for pipes & fittings used across ProcureFlow plants.
+caf36b91-af87-53fc-8158-13f91aade9d5,2025-05-15T08:00:00Z,system,2025-05-15T08:00:00Z,system,VALVE,Valves,Procurement category for valves used across ProcureFlow plants.
+e70d53aa-bb36-5382-8414-f85fb1b4cacb,2025-05-16T08:00:00Z,system,2025-05-16T08:00:00Z,system,LAB,Laboratory Supplies,Procurement category for laboratory supplies used across ProcureFlow plants.
+691d9e13-4d57-593c-acb4-8ff0871f82d9,2025-05-17T08:00:00Z,system,2025-05-17T08:00:00Z,system,CLEAN,Cleaning Supplies,Procurement category for cleaning supplies used across ProcureFlow plants.
