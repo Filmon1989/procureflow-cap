@@ -1,0 +1,109 @@
+### Get first 5 purchase orders
+GET http://localhost:4004/procurement/PurchaseOrders?$top=5
+Accept: application/json
+
+### Verify approved purchase order
+GET http://localhost:4004/procurement/PurchaseOrders(00dad0f5-b30b-5124-b97c-95e4cb0045ea)
+Accept: application/json
+
+### Approve a purchase order
+POST http://localhost:4004/procurement/PurchaseOrders(00dad0f5-b30b-5124-b97c-95e4cb0045ea)/approve
+Content-Type: application/json
+
+{}
+
+### Reject purchase order
+POST http://localhost:4004/procurement/PurchaseOrders(019845d6-ed09-5f6b-9aa4-f61f01e4ec1f)/reject
+Content-Type: application/json
+
+{
+  "reason": "Supplier delivery conditions are no longer acceptable."
+}
+
+### Verify rejected purchase order
+GET http://localhost:4004/procurement/PurchaseOrders(019845d6-ed09-5f6b-9aa4-f61f01e4ec1f)
+Accept: application/json
+
+### Invalid PO - delivery date before order date
+POST http://localhost:4004/procurement/PurchaseOrders
+Content-Type: application/json
+
+{
+  "purchaseOrderNumber": "4599999991",
+  "supplier_ID": "1687ebd0-4f66-5790-9b72-e3238b0ae7f7",
+  "plant_ID": "03aef187-5272-56c7-bfc4-cf8b61ecf06b",
+  "buyer_ID": "d778b989-a675-5d3f-8009-55dfeceec6f9",
+  "orderDate": "2026-08-20",
+  "deliveryDate": "2026-08-10",
+  "status": "DRAFT",
+  "currency_code": "EUR",
+  "netAmount": 1000,
+  "taxAmount": 190,
+  "totalAmount": 1190,
+  "paymentTerms": "0003",
+  "incoterm": "CIP"
+}
+
+### Find blocked suppliers
+GET http://localhost:4004/procurement/Suppliers?$filter=status eq 'BLOCKED'&$top=5
+Accept: application/json
+
+
+### Invalid PO - blocked supplier
+POST http://localhost:4004/procurement/PurchaseOrders
+Content-Type: application/json
+
+{
+  "purchaseOrderNumber": "4599999992",
+  "supplier_ID": "9776ac4d-0b8c-54c6-af3f-70a8b8ee2d35",
+  "plant_ID": "03aef187-5272-56c7-bfc4-cf8b61ecf06b",
+  "buyer_ID": "d778b989-a675-5d3f-8009-55dfeceec6f9",
+  "orderDate": "2026-08-20",
+  "deliveryDate": "2026-09-10",
+  "status": "DRAFT",
+  "currency_code": "EUR",
+  "netAmount": 1000,
+  "taxAmount": 190,
+  "totalAmount": 1190,
+  "paymentTerms": "0003",
+  "incoterm": "CIP"
+}
+
+### Invalid PO item - quantity is zero
+POST http://localhost:4004/procurement/PurchaseOrderItems
+Content-Type: application/json
+
+{
+  "purchaseOrder_ID": "00dad0f5-b30b-5124-b97c-95e4cb0045ea",
+  "itemNumber": 90,
+  "material_ID": "00a24b8a-d6ef-5fd9-b832-024cf1e9f1b5",
+  "quantity": 0,
+  "unit": "EA",
+  "unitPrice": 25,
+  "currency_code": "EUR",
+  "deliveryDate": "2026-09-10"
+}
+
+### Get a material for testing
+GET http://localhost:4004/procurement/Materials?$top=1
+Accept: application/json
+
+### Valid PO item - calculate net amount automatically
+POST http://localhost:4004/procurement/PurchaseOrderItems
+Content-Type: application/json
+
+{
+  "purchaseOrder_ID": "00dad0f5-b30b-5124-b97c-95e4cb0045ea",
+  "itemNumber": 100,
+  "material_ID": "00a24b8a-d6ef-5fd9-b832-024cf1e9f1b5",
+  "quantity": 10,
+  "unit": "EA",
+  "unitPrice": 25,
+  "currency_code": "EUR",
+  "deliveryDate": "2026-09-10"
+}
+
+### Check PO header totals after item creation
+
+GET http://localhost:4004/procurement/PurchaseOrders(00dad0f5-b30b-5124-b97c-95e4cb0045ea)
+Accept: application/json

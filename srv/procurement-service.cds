@@ -3,6 +3,10 @@ using { com.procureflow as db } from '../db/schema';
 @path: '/procurement'
 service ProcurementService {
 
+    type ActionResult {
+    message : String(500);
+}
+
     @readonly
     entity Companies
         as projection on db.Companies;
@@ -33,7 +37,14 @@ service ProcurementService {
         as projection on db.PurchaseRequisitionItems;
 
     entity PurchaseOrders
-        as projection on db.PurchaseOrders;
+        as projection on db.PurchaseOrders
+        actions {
+                action approve()
+                    returns ActionResult;
+
+                action reject(reason : String(500))
+                    returns ActionResult;
+    };
 
     entity PurchaseOrderItems
         as projection on db.PurchaseOrderItems;
