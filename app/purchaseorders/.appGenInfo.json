@@ -1,0 +1,32 @@
+{
+  "generationParameters": {
+    "generationDate": "Wed Aug 12 2026 11:16:27 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "Local CAP",
+    "metadataFilename": "",
+    "serviceUrl": "http://localhost:4004/procurement/",
+    "appName": "purchaseorders",
+    "appTitle": "Purchase Order Management",
+    "appDescription": "Manage purchase orders, suppliers, approvals and procurement items",
+    "appNamespace": "com.procureflow",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.151.0",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": false,
+    "generatorVersion": "1.30.0",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "PurchaseOrders"
+      },
+      {
+        "type": "Navigation Entity",
+        "value": "items"
+      }
+    ],
+    "launchText": "To launch the generated app, start your CAP project:  and navigate to the following location in your browser:\n\nhttp://localhost:4004/purchaseorders/webapp/index.html"
+  }
+}
