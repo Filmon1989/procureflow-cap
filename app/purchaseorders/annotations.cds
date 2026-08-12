@@ -80,84 +80,129 @@ annotate service.PurchaseOrders with @(
         }
     ],
 
-    UI.FieldGroup #GeneratedGroup : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
+            UI.Identification : [
+        {
+            $Type  : 'UI.DataFieldForAction',
+            Label  : 'Approve',
+            Action : 'ProcurementService.approve'
+        },
+        {
+            $Type  : 'UI.DataFieldForAction',
+            Label  : 'Reject',
+            Action : 'ProcurementService.reject'
+        }
+    ],
 
-            {
-                $Type : 'UI.DataField',
-                Label : 'Purchase Order',
-                Value : purchaseOrderNumber
-            },
+    UI.FieldGroup #GeneralInformation : {
+    $Type : 'UI.FieldGroupType',
+    Data : [
+        {
+            $Type : 'UI.DataField',
+            Label : 'Purchase Order',
+            Value : purchaseOrderNumber
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Supplier',
+            Value : supplier.companyName
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Plant',
+            Value : plant.name
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Buyer Number',
+            Value : buyer.employeeNumber
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Buyer First Name',
+            Value : buyer.firstName
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Buyer Last Name',
+            Value : buyer.lastName
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Order Date',
+            Value : orderDate
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Delivery Date',
+            Value : deliveryDate
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Status',
+            Value : status
+        }
+    ]
+},
 
-            {
-                $Type : 'UI.DataField',
-                Label : 'Order Date',
-                Value : orderDate
-            },
-
-            {
-                $Type : 'UI.DataField',
-                Label : 'Delivery Date',
-                Value : deliveryDate
-            },
-
-            {
-                $Type : 'UI.DataField',
-                Label : 'Status',
-                Value : status
-            },
-
-            {
-                $Type : 'UI.DataField',
-                Label : 'Net Amount',
-                Value : netAmount
-            },
-
-            {
-                $Type : 'UI.DataField',
-                Label : 'Tax Amount',
-                Value : taxAmount
-            },
-
-            {
-                $Type : 'UI.DataField',
-                Label : 'Total Amount',
-                Value : totalAmount
-            },
-
-            {
-                $Type : 'UI.DataField',
-                Label : 'Payment Terms',
-                Value : paymentTerms
-            },
-
-            {
-                $Type : 'UI.DataField',
-                Label : 'Incoterm',
-                Value : incoterm
-            },
-
-            {
-                $Type : 'UI.DataField',
-                Label : 'Approved At',
-                Value : approvedAt
-            },
-
-            {
-                $Type : 'UI.DataField',
-                Label : 'Notes',
-                Value : notes
-            }
-        ]
-    },
+        UI.FieldGroup #FinancialInformation : {
+    $Type : 'UI.FieldGroupType',
+    Data : [
+        {
+            $Type : 'UI.DataField',
+            Label : 'Net Amount',
+            Value : netAmount
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Tax Amount',
+            Value : taxAmount
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Total Amount',
+            Value : totalAmount
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Currency',
+            Value : currency_code
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Payment Terms',
+            Value : paymentTerms
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Incoterm',
+            Value : incoterm
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Approved At',
+            Value : approvedAt
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Notes',
+            Value : notes
+        }
+    ]
+},
+    
 
     UI.Facets : [
     {
         $Type : 'UI.ReferenceFacet',
         ID     : 'GeneralInformation',
         Label  : 'General Information',
-        Target : '@UI.FieldGroup#GeneratedGroup'
+        Target : '@UI.FieldGroup#GeneralInformation'
+    },
+    {
+        $Type : 'UI.ReferenceFacet',
+        ID     : 'FinancialInformation',
+        Label  : 'Financial Information',
+        Target : '@UI.FieldGroup#FinancialInformation'
     },
     {
         $Type : 'UI.ReferenceFacet',
@@ -351,6 +396,28 @@ annotate service.PurchaseOrderItems with @(
             $Type : 'UI.DataField',
             Label : 'Received Quantity',
             Value : receivedQuantity
+        },
+
+        {
+            $Type  : 'UI.DataFieldForAction',
+            Label  : 'Approve',
+            Action : 'ProcurementService.approve'
+        },
+        {
+            $Type  : 'UI.DataFieldForAction',
+            Label  : 'Reject',
+            Action : 'ProcurementService.reject'
         }
     ]
 );
+
+annotate service.PurchaseOrders with {
+    netAmount   @Measures.ISOCurrency : currency_code;
+    taxAmount   @Measures.ISOCurrency : currency_code;
+    totalAmount @Measures.ISOCurrency : currency_code;
+};
+
+annotate service.PurchaseOrderItems with {
+    unitPrice @Measures.ISOCurrency : currency_code;
+    netAmount @Measures.ISOCurrency : currency_code;
+};

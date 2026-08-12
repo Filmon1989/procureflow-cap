@@ -35,15 +35,35 @@ service ProcurementService {
 
     entity PurchaseRequisitionItems
         as projection on db.PurchaseRequisitionItems;
+entity PurchaseOrders
+    as projection on db.PurchaseOrders
+    actions {
 
-    entity PurchaseOrders
-        as projection on db.PurchaseOrders
-        actions {
-                action approve()
-                    returns ActionResult;
+        @Core.OperationAvailable: {
+            $edmJson: {
+                $And: [
+                    { $Ne: [ { $Path: 'status' }, 'APPROVED' ] },
+                    { $Ne: [ { $Path: 'status' }, 'CANCELLED' ] },
+                    { $Ne: [ { $Path: 'status' }, 'COMPLETED' ] },
+                    { $Ne: [ { $Path: 'status' }, 'REJECTED' ] }
+                ]
+            }
+        }
+        action approve()
+            returns ActionResult;
 
-                action reject(reason : String(500))
-                    returns ActionResult;
+        @Core.OperationAvailable: {
+            $edmJson: {
+                $And: [
+                    { $Ne: [ { $Path: 'status' }, 'REJECTED' ] },
+                    { $Ne: [ { $Path: 'status' }, 'COMPLETED' ] },
+                    { $Ne: [ { $Path: 'status' }, 'CANCELLED' ] },
+                    { $Ne: [ { $Path: 'status' }, 'APPROVED' ] }
+                ]
+            }
+        }
+        action reject(reason : String(500))
+            returns ActionResult;
     };
 
     entity PurchaseOrderItems
