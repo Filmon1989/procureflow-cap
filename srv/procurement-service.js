@@ -9,6 +9,59 @@ module.exports = cds.service.impl(async function () {
         Plants
     } = this.entities;
 
+    /*
+ * ============================================================
+ * INITIALIZE NEW PURCHASE ORDER DRAFT
+ * ============================================================
+ *
+ * Runs when Fiori creates a brand-new Purchase Order draft.
+ * Provides default values before the user starts editing.
+ */
+this.before(
+    'NEW',
+    PurchaseOrders.drafts,
+    async (req) => {
+
+        /*
+         * Generate the next PO number.
+         *
+         * For this portfolio project, PO numbers use the
+         * 4500000000 range.
+         */
+        const latestPO = await SELECT.one
+            .from(PurchaseOrders)
+            .columns('purchaseOrderNumber')
+            .orderBy('purchaseOrderNumber desc');
+
+        const lastNumber =
+            Number(latestPO?.purchaseOrderNumber || 4500000000);
+
+        req.data.purchaseOrderNumber =
+            String(lastNumber + 1);
+
+
+        /*
+         * Default business status for a new PO.
+         */
+        req.data.status = 'DRAFT';
+
+
+        /*
+         * Default order date to today.
+         */
+        req.data.orderDate =
+            new Date().toISOString().slice(0, 10);
+
+
+        /*
+         * Initialize calculated amounts.
+         */
+        req.data.netAmount = 0;
+        req.data.taxAmount = 0;
+        req.data.totalAmount = 0;
+    }
+);
+
    /*
  * ============================================================
  * RECALCULATE PURCHASE ORDER TOTALS

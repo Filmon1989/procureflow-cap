@@ -421,3 +421,30 @@ annotate service.PurchaseOrderItems with {
     unitPrice @Measures.ISOCurrency : currency_code;
     netAmount @Measures.ISOCurrency : currency_code;
 };
+
+annotate service.PurchaseOrders with @(
+    Capabilities.InsertRestrictions : {
+        Insertable : true
+    },
+    Capabilities.UpdateRestrictions : {
+        Updatable : true
+    }
+);
+
+// ============================================================
+// FIELD EDITABILITY
+// System-controlled Purchase Order fields
+// ============================================================
+
+annotate service.PurchaseOrders with {
+
+    purchaseOrderNumber @readonly;
+    
+    netAmount   @readonly;
+    taxAmount   @readonly;
+    totalAmount @readonly;
+
+    status      @readonly;
+    approvedAt  @readonly;
+
+};
