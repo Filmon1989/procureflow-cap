@@ -103,7 +103,142 @@ Content-Type: application/json
   "deliveryDate": "2026-09-10"
 }
 
+### Create fresh PO item for delete test
+POST http://localhost:4004/procurement/PurchaseOrderItems
+Content-Type: application/json
+
+{
+  "purchaseOrder_ID": "00dad0f5-b30b-5124-b97c-95e4cb0045ea",
+  "itemNumber": 110,
+  "material_ID": "00a24b8a-d6ef-5fd9-b832-024cf1e9f1b5",
+  "quantity": 10,
+  "unit": "EA",
+  "unitPrice": 25,
+  "currency_code": "EUR",
+  "deliveryDate": "2026-09-10"
+}
+
 ### Check PO header totals after item creation
 
+GET http://localhost:4004/procurement/PurchaseOrders(00dad0f5-b30b-5124-b97c-95e4cb0045ea)
+Accept: application/json
+
+
+### Check PO totals after item deletion
+GET http://localhost:4004/procurement/PurchaseOrders(00dad0f5-b30b-5124-b97c-95e4cb0045ea)
+Accept: application/json
+
+### Check fresh PO item exists
+GET http://localhost:4004/procurement/PurchaseOrderItems(68589e92-bd98-479c-a69b-6ea322b0f0cf)
+Accept: application/json
+
+### Delete existing test PO item
+DELETE http://localhost:4004/procurement/PurchaseOrderItems(68589e92-bd98-479c-a69b-6ea322b0f0cf)
+
+### Check PO totals after deletion
+GET http://localhost:4004/procurement/PurchaseOrders(00dad0f5-b30b-5124-b97c-95e4cb0045ea)
+Accept: application/json
+
+### DELETE TEST 1 - Create fresh PO item
+POST http://localhost:4004/procurement/PurchaseOrderItems
+Content-Type: application/json
+
+{
+  "purchaseOrder_ID": "00dad0f5-b30b-5124-b97c-95e4cb0045ea",
+  "itemNumber": 120,
+  "material_ID": "00a24b8a-d6ef-5fd9-b832-024cf1e9f1b5",
+  "quantity": 10,
+  "unit": "EA",
+  "unitPrice": 25,
+  "currency_code": "EUR",
+  "deliveryDate": "2026-09-10"
+}
+
+### DELETE TEST 2 - Delete fresh PO item
+DELETE http://localhost:4004/procurement/PurchaseOrderItems(7d1e515d-6b09-428d-820d-c6897b674612)
+
+### DELETE TEST 3 - Verify item is gone
+GET http://localhost:4004/procurement/PurchaseOrderItems(7d1e515d-6b09-428d-820d-c6897b674612)
+Accept: application/json
+
+### DELETE TEST 4 - Verify PO totals recalculated
+GET http://localhost:4004/procurement/PurchaseOrders(00dad0f5-b30b-5124-b97c-95e4cb0045ea)
+Accept: application/json
+
+### Create fresh item for DELETE test
+POST http://localhost:4004/procurement/PurchaseOrderItems
+Content-Type: application/json
+
+{
+  "purchaseOrder_ID": "00dad0f5-b30b-5124-b97c-95e4cb0045ea",
+  "itemNumber": 130,
+  "material_ID": "00a24b8a-d6ef-5fd9-b832-024cf1e9f1b5",
+  "quantity": 10,
+  "unit": "EA",
+  "unitPrice": 25,
+  "currency_code": "EUR",
+  "deliveryDate": "2026-09-10"
+}
+
+### DELETE TEST - Delete fresh PO item
+DELETE http://localhost:4004/procurement/PurchaseOrderItems(99b667f1-4bbb-4c6e-b57b-27b407aa8d57)
+
+### DELETE TEST 3 - Verify item is gone
+GET http://localhost:4004/procurement/PurchaseOrderItems(99b667f1-4bbb-4c6e-b57b-27b407aa8d57)
+Accept: application/json
+
+### DELETE TEST 4 - Verify PO totals after deletion
+GET http://localhost:4004/procurement/PurchaseOrders(00dad0f5-b30b-5124-b97c-95e4cb0045ea)
+Accept: application/json
+
+
+### DELETE TEST - Create item with fixed ID
+POST http://localhost:4004/procurement/PurchaseOrderItems
+Content-Type: application/json
+
+{
+  "ID": "11111111-2222-4333-8444-555555555555",
+  "purchaseOrder_ID": "00dad0f5-b30b-5124-b97c-95e4cb0045ea",
+  "itemNumber": 140,
+  "material_ID": "00a24b8a-d6ef-5fd9-b832-024cf1e9f1b5",
+  "quantity": 10,
+  "unit": "EA",
+  "unitPrice": 25,
+  "currency_code": "EUR",
+  "deliveryDate": "2026-09-10"
+}
+
+### DELETE TEST - Delete same item
+DELETE http://localhost:4004/procurement/PurchaseOrderItems(11111111-2222-4333-8444-555555555555)
+
+### DELETE TEST - Verify item is gone
+GET http://localhost:4004/procurement/PurchaseOrderItems(11111111-2222-4333-8444-555555555555)
+Accept: application/json
+
+### DELETE TEST - Verify PO totals
+GET http://localhost:4004/procurement/PurchaseOrders(00dad0f5-b30b-5124-b97c-95e4cb0045ea)
+Accept: application/json
+
+### Check plant used by test PO
+GET http://localhost:4004/procurement/Plants(03aef187-5272-56c7-bfc4-cf8b61ecf06b)
+Accept: application/json
+
+### TAX TEST - Create PO item
+POST http://localhost:4004/procurement/PurchaseOrderItems
+Content-Type: application/json
+
+{
+  "ID": "22222222-3333-4444-8555-666666666666",
+  "purchaseOrder_ID": "00dad0f5-b30b-5124-b97c-95e4cb0045ea",
+  "itemNumber": 150,
+  "material_ID": "00a24b8a-d6ef-5fd9-b832-024cf1e9f1b5",
+  "quantity": 10,
+  "unit": "EA",
+  "unitPrice": 25,
+  "currency_code": "EUR",
+  "deliveryDate": "2026-09-10"
+}
+
+### TAX TEST - Check PO totals
 GET http://localhost:4004/procurement/PurchaseOrders(00dad0f5-b30b-5124-b97c-95e4cb0045ea)
 Accept: application/json

@@ -5,18 +5,37 @@ module.exports = cds.service.impl(async function () {
     const {
         PurchaseOrders,
         PurchaseOrderItems,
-        Suppliers
+        Suppliers,
+        Plants
     } = this.entities;
 
-    /*
+   /*
  * ============================================================
  * RECALCULATE PURCHASE ORDER TOTALS
  * ============================================================
  *
- * Calculates the Purchase Order header values from its items.
+ * Calculates PO header totals from its items.
+ * Tax rate is determined from the purchasing plant's country.
  */
 async function recalculatePurchaseOrderTotals(purchaseOrderID) {
 
+    /*
+     * Read the Purchase Order.
+     */
+    const purchaseOrder = await SELECT.one
+        .from(PurchaseOrders)
+        .where({
+            ID: purchaseOrderID
+        });
+
+    if (!purchaseOrder) {
+        return;
+    }
+
+
+    /*
+     * Read all items belonging to this Purchase Order.
+     */
     const items = await SELECT
         .from(PurchaseOrderItems)
         .columns('netAmount')
@@ -26,33 +45,74 @@ async function recalculatePurchaseOrderTotals(purchaseOrderID) {
 
 
     /*
-     * Sum all PO item net amounts.
+     * Sum the item net amounts.
      */
     const netAmount = items.reduce(
-        (sum, item) => sum + Number(item.netAmount || 0),
+        (sum, item) =>
+            sum + Number(item.netAmount || 0),
         0
     );
 
 
     /*
-     * For this portfolio project we initially use 19% tax.
-     *
-     * Later we can make tax determination dependent on
-     * plant/country/business rules.
+     * Read the purchasing plant.
      */
-    const taxAmount = netAmount * 0.19;
-
-    const totalAmount = netAmount + taxAmount;
+    const plant = await SELECT.one
+        .from(Plants)
+        .where({
+            ID: purchaseOrder.plant_ID
+        });
 
 
     /*
-     * Store calculated amounts on the PO header.
+     * Simplified tax configuration for this portfolio project.
+     *
+     * The tax rate is determined by plant country.
+     */
+    const taxRates = {
+        DE: 0.19,
+        FR: 0.20,
+        IT: 0.22,
+        ES: 0.21,
+        NL: 0.21,
+        BE: 0.21,
+        AT: 0.20,
+        PL: 0.23,
+        US: 0.07
+    };
+
+
+    /*
+     * Use the country's configured rate.
+     * If no rate exists, use 0%.
+     */
+    const taxRate =
+        taxRates[plant?.country_code] ?? 0;
+
+
+    /*
+     * Calculate tax and gross total.
+     */
+    const taxAmount =
+        netAmount * taxRate;
+
+    const totalAmount =
+        netAmount + taxAmount;
+
+
+    /*
+     * Update the Purchase Order header.
      */
     await UPDATE(PurchaseOrders)
         .set({
-            netAmount: Number(netAmount.toFixed(2)),
-            taxAmount: Number(taxAmount.toFixed(2)),
-            totalAmount: Number(totalAmount.toFixed(2))
+            netAmount:
+                Number(netAmount.toFixed(2)),
+
+            taxAmount:
+                Number(taxAmount.toFixed(2)),
+
+            totalAmount:
+                Number(totalAmount.toFixed(2))
         })
         .where({
             ID: purchaseOrderID
@@ -237,6 +297,50 @@ async function recalculatePurchaseOrderTotals(purchaseOrderID) {
         }
     );
 
+/*
+ * ============================================================
+ * REMEMBER PARENT PO BEFORE ITEM DELETE
+ * ============================================================
+ */
+this.before(
+    'DELETE',
+    PurchaseOrderItems,
+    async (req) => {
+
+        const item = await SELECT.one
+            .from(req.subject);
+
+        if (!item) {
+            return req.reject(
+                404,
+                'Purchase order item not found.'
+            );
+        }
+
+        req._purchaseOrderID =
+            item.purchaseOrder_ID;
+    }
+);
+
+
+/*
+ * ============================================================
+ * RECALCULATE PO AFTER ITEM DELETE
+ * ============================================================
+ */
+this.after(
+    'DELETE',
+    PurchaseOrderItems,
+    async (_, req) => {
+
+        if (req._purchaseOrderID) {
+            await recalculatePurchaseOrderTotals(
+                req._purchaseOrderID
+            );
+        }
+
+    }
+);
     /*
      * ============================================================
      * APPROVE PURCHASE ORDER
