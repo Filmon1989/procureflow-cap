@@ -1,8 +1,13 @@
 using { com.procureflow as db } from '../db/schema';
 
 @path: '/procurement'
+@requires: [
+    'ProcurementViewer',
+    'ProcurementBuyer',
+    'ProcurementApprover',
+    'ProcurementAdmin'
+]
 service ProcurementService {
-
     type ActionResult {
         message : String(500);
     }
@@ -46,8 +51,30 @@ service ProcurementService {
 
 
     @odata.draft.enabled
-    entity PurchaseOrders
-        as projection on db.PurchaseOrders
+    @restrict: [
+        {
+            grant: 'READ',
+            to: [
+                'ProcurementViewer',
+                'ProcurementBuyer',
+                'ProcurementApprover',
+                'ProcurementAdmin'
+            ]
+        },
+        {
+            grant: [
+                'CREATE',
+                'UPDATE',
+                'DELETE'
+            ],
+            to: [
+                'ProcurementBuyer',
+                'ProcurementAdmin'
+            ]
+        }
+    ]
+entity PurchaseOrders
+    as projection on db.PurchaseOrders
         actions {
 
             @Core.OperationAvailable: {
@@ -79,7 +106,28 @@ service ProcurementService {
         };
 
 
-    entity PurchaseOrderItems
-        as projection on db.PurchaseOrderItems;
-
+    @restrict: [
+    {
+        grant: 'READ',
+        to: [
+            'ProcurementViewer',
+            'ProcurementBuyer',
+            'ProcurementApprover',
+            'ProcurementAdmin'
+        ]
+    },
+    {
+        grant: [
+            'CREATE',
+            'UPDATE',
+            'DELETE'
+        ],
+        to: [
+            'ProcurementBuyer',
+            'ProcurementAdmin'
+        ]
+    }
+]
+entity PurchaseOrderItems
+    as projection on db.PurchaseOrderItems;
 }

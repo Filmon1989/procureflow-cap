@@ -19,5 +19,41 @@
   ],
   "sapux": [
     "app/purchaseorders"
-  ]
+  ],
+  "cds": {
+    "requires": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "viewer": {
+            "password": "viewer",
+            "roles": [
+              "ProcurementViewer"
+            ]
+          },
+          "buyer": {
+            "password": "buyer",
+            "roles": [
+              "ProcurementBuyer"
+            ]
+          },
+          "approver": {
+            "password": "approver",
+            "roles": [
+              "ProcurementApprover"
+            ]
+          },
+          "admin": {
+            "password": "admin",
+            "roles": [
+              "ProcurementViewer",
+              "ProcurementBuyer",
+              "ProcurementApprover",
+              "ProcurementAdmin"
+            ]
+          }
+        }
+      }
+    }
+  }
 }
