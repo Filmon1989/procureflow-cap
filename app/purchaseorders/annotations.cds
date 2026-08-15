@@ -93,55 +93,55 @@ annotate service.PurchaseOrders with @(
         }
     ],
 
-    UI.FieldGroup #GeneralInformation : {
-    $Type : 'UI.FieldGroupType',
-    Data : [
-        {
-            $Type : 'UI.DataField',
-            Label : 'Purchase Order',
-            Value : purchaseOrderNumber
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Supplier',
-            Value : supplier.companyName
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Plant',
-            Value : plant.name
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Buyer Number',
-            Value : buyer.employeeNumber
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Buyer First Name',
-            Value : buyer.firstName
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Buyer Last Name',
-            Value : buyer.lastName
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Order Date',
-            Value : orderDate
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Delivery Date',
-            Value : deliveryDate
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Status',
-            Value : status
-        }
-    ]
+  UI.FieldGroup #GeneralInformation : {
+    $Type : 'UI.FieldGroupType',
+    Data : [
+        {
+            $Type : 'UI.DataField',
+            Label : 'Purchase Order',
+            Value : purchaseOrderNumber
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Supplier',
+            Value : supplier.companyName
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Plant',
+            Value : plant.name
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Buyer Number',
+            Value : buyer.employeeNumber
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Buyer First Name',
+            Value : buyer.firstName
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Buyer Last Name',
+            Value : buyer.lastName
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Order Date',
+            Value : orderDate
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Delivery Date',
+            Value : deliveryDate
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Status',
+            Value : status
+        }
+    ]
 },
 
         UI.FieldGroup #FinancialInformation : {
