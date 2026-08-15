@@ -1,0 +1,55 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.ProcurementViewer",
+      "description": "ProcurementViewer"
+    },
+    {
+      "name": "$XSAPPNAME.ProcurementBuyer",
+      "description": "ProcurementBuyer"
+    },
+    {
+      "name": "$XSAPPNAME.ProcurementApprover",
+      "description": "ProcurementApprover"
+    },
+    {
+      "name": "$XSAPPNAME.ProcurementAdmin",
+      "description": "ProcurementAdmin"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "ProcurementViewer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.ProcurementViewer"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "ProcurementBuyer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.ProcurementBuyer"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "ProcurementApprover",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.ProcurementApprover"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "ProcurementAdmin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.ProcurementAdmin"
+      ],
+      "attribute-references": []
+    }
+  ]
+}
