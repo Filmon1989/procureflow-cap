@@ -4,6 +4,20 @@ ProcureFlow is an end-to-end procurement management application built with the *
 
 The project demonstrates the complete lifecycle of a cloud-native SAP application: domain modeling, OData services, custom business logic, transactional Fiori UI, role-based authorization, SAP HANA Cloud persistence, XSUAA authentication, and production deployment.
 
+## Application Screenshots
+
+### Purchase Order List
+
+![Purchase Order List](docs/screenshots/purchase-orders-list.png)
+
+### Purchase Order Details
+
+![Purchase Order Details](docs/screenshots/purchase-order-details.png)
+
+### SAP BTP Cloud Foundry Deployment
+
+![SAP BTP Cloud Foundry Deployment](docs/screenshots/btp-cloud-foundry-deployment.png)
+
 ## Business Scenario
 
 ProcureFlow models a global procurement process in which purchasing teams manage suppliers, materials, purchase requisitions and purchase orders across multiple companies and plants.
